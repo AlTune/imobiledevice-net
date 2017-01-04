@@ -5,6 +5,10 @@
     "Quamotion"
   ],
 
+  "dependencies": {
+    "runtime.win7-x86.vcruntime140": "14.00.24406.0-r158"
+  },
+
   "title": "Windows (32-bit) Native libraries for .NET client for iOS devices (libimobiledevice-net)",
   "description": ".NET bindings for libimobiledevice, allows you to interact with devices running iOS, such as iPhones or iPads, using C# or VB.NET code",
   "packOptions": {
