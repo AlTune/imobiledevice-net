@@ -1,0 +1,50 @@
+﻿<Project Sdk="Microsoft.NET.Sdk" ToolsVersion="15.0">
+
+  <PropertyGroup>
+    <Description>.NET bindings for libimobiledevice, allows you to interact with devices running iOS, such as iPhones or iPads, using C# or VB.NET code</Description>
+    <AssemblyTitle>Windows (64-bit) Native libraries for .NET client for iOS devices (libimobiledevice-net)</AssemblyTitle>
+    <VersionPrefix>1.2.1</VersionPrefix>
+    <Authors>Quamotion</Authors>
+    <TargetFrameworks>netstandard1.5;net45</TargetFrameworks>
+    <RuntimeIdentifiers>win7-x64;win7-x86;osx.10.10-x64;osx.10.11-x64;ubuntu.14.04-x64;ubuntu.16.04-x64;centos.7-x64;rhel.7.2-x64;debian.8-x64;fedora.23-x64;opensuse.13.2-x64</RuntimeIdentifiers>
+    <AssemblyName>runtime.win-x64.iMobileDevice-net</AssemblyName>
+    <PackageTags>libimobiledevice;ios;iphone;ipad;imobiledevice;netcore</PackageTags>
+    <PackageLicenseUrl>https://raw.githubusercontent.com/libimobiledevice-win32/imobiledevice-net/blob/master/LICENSE.txt</PackageLicenseUrl>
+    <RepositoryType>git</RepositoryType>
+    <RepositoryUrl>http://github.com/libimobiledevice-win32/imobiledevice-net</RepositoryUrl>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Include="**\*.cs" />
+    <EmbeddedResource Include="**\*.resx" />
+    <EmbeddedResource Include="compiler\resources\**\*" />
+    <Content Include="lighthouse-x64.dll">
+      <PackagePath>runtimes\win7-x64\native</PackagePath>
+      <Pack>true</Pack>
+    </Content>
+    <Content Include="..\..\packages\libimobiledevice.redist.1.2.1.80\build\native\bin\x64\v140\Release\*.*;..\..\packages\libimobiledevice.symbols.1.2.1.80\build\native\bin\x64\v140\Release\*.pdb;..\..\packages\libiconv.redist.1.14.0.11\build\native\bin\v110\x64\Release\dynamic\cdecl\*.dll;..\..\packages\openssl.v140.windesktop.msvcstl.dyn.rt-dyn.x64.1.0.2.0\lib\native\v140\windesktop\msvcstl\dyn\rt-dyn\x64\release\*.dll;..\..\packages\zlib.v140.windesktop.msvcstl.dyn.rt-dyn.1.2.8.8\lib\native\v140\windesktop\msvcstl\dyn\rt-dyn\x64\Release\*.dll;..\..\packages\fix8.dependencies.getopt.1.0.20151130.1\build\native\bin\x64\v140\Release\Desktop\*.dll;..\..\packages\usbmuxd.1.1.0.50\runtimes\win7-x64\native\*.exe;..\..\packages\usbmuxd.1.1.0.50\runtimes\win7-x64\native\*.dll;..\..\packages\pthreads.redist.2.9.1.4\build\native\bin\v110\x64\Release\dynamic\cdecl\*.dll;msvcr110.dll;vcruntime140.dll">
+      <PackagePath>runtimes/win7-x64/native/</PackagePath>
+      <Pack>true</Pack>
+    </Content>
+    <Content Include="runtime.win-x64.iMobileDevice-net.targets">
+      <PackagePath>build/net40/</PackagePath>
+      <Pack>true</Pack>
+    </Content>
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="NETStandard.Library">
+      <Version>1.6.0</Version>
+    </PackageReference>
+  </ItemGroup>
+
+  <ItemGroup Condition=" '$(TargetFramework)' == 'net45' ">
+    <Reference Include="System" />
+    <Reference Include="Microsoft.CSharp" />
+  </ItemGroup>
+
+  <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
+    <DefineConstants>$(DefineConstants);RELEASE</DefineConstants>
+  </PropertyGroup>
+
+</Project>

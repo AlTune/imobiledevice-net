@@ -10,11 +10,15 @@ build_script:
   - dotnet pack imobiledevice-net\project.json --version-suffix r%APPVEYOR_BUILD_NUMBER%
   - dotnet pack native\runtime.win-x64.iMobileDevice-net\project.json --version-suffix r%APPVEYOR_BUILD_NUMBER%
   - dotnet pack native\runtime.win-x86.iMobileDevice-net\project.json --version-suffix r%APPVEYOR_BUILD_NUMBER%
+  - dotnet pack native\runtime.win7-x64.vcruntime140\project.json --version-suffix r%APPVEYOR_BUILD_NUMBER%
+  - dotnet pack native\runtime.win7-x86.vcruntime140\project.json --version-suffix r%APPVEYOR_BUILD_NUMBER%
 
 on_success:
   - ps: Push-AppVeyorArtifact imobiledevice-net\bin\Debug\imobiledevice-net.1.2.1-r$($env:APPVEYOR_BUILD_NUMBER).nupkg
   - ps: Push-AppVeyorArtifact native\runtime.win-x64.iMobileDevice-net\bin\Debug\runtime.win-x64.iMobileDevice-net.1.2.1-r$($env:APPVEYOR_BUILD_NUMBER).nupkg
   - ps: Push-AppVeyorArtifact native\runtime.win-x86.iMobileDevice-net\bin\Debug\runtime.win-x86.iMobileDevice-net.1.2.1-r$($env:APPVEYOR_BUILD_NUMBER).nupkg
+  - ps: Push-AppVeyorArtifact native\runtime.win7-x64.vcruntime140\bin\Debug\runtime.win7-x64.vcruntime140.14.00.24406.0-r$($env:APPVEYOR_BUILD_NUMBER).nupkg
+  - ps: Push-AppVeyorArtifact native\runtime.win7-x86.vcruntime140\bin\Debug\runtime.win7-x86.vcruntime140.14.00.24406.0-r$($env:APPVEYOR_BUILD_NUMBER).nupkg
 
 nuget:
   project_feed: true
