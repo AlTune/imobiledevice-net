@@ -31,6 +31,11 @@ namespace iMobileDevice
 
         public static void Load(string directory)
         {
+            Load(directory, true);
+        }
+
+        public static void Load(string directory, bool useRuntimeDirectory)
+        {
 #if !NETSTANDARD1_5
             if (directory == null)
             {
@@ -67,7 +72,8 @@ namespace iMobileDevice
                 string[] windowsLibariesToLoad = new string[]
                 {
                     "msvcr110",
-                    "vcruntime140",
+                    // "vcruntime140",
+                    // vcruntime is in a dependent package, so we can't load it directly
                     "zlib",
                     "libiconv",
                     "getopt",
@@ -78,13 +84,20 @@ namespace iMobileDevice
 
                 string nativeLibrariesDirectory;
 
-                if (Environment.Is64BitProcess)
+                if (useRuntimeDirectory)
                 {
-                    nativeLibrariesDirectory = Path.Combine(directory, "win7-x64");
+                    if (Environment.Is64BitProcess)
+                    {
+                        nativeLibrariesDirectory = Path.Combine(directory, "win7-x64");
+                    }
+                    else
+                    {
+                        nativeLibrariesDirectory = Path.Combine(directory, "win7-x86");
+                    }
                 }
                 else
                 {
-                    nativeLibrariesDirectory = Path.Combine(directory, "win7-x86");
+                    nativeLibrariesDirectory = directory;
                 }
 
                 if (!Directory.Exists(nativeLibrariesDirectory))
